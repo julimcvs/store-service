@@ -1,0 +1,6 @@
+
+Ltypescript:S1128"$Remove this unused import of 'auth'.(¼ò¥†ıÿÿÿÿ8ûÂè•Û1
+Wtypescript:S1128"/Remove this unused import of 'validateRequest'.(áçÉ­üÿÿÿÿ8üÂè•Û1
+jtypescript:S6544
+"GPromise returned in function argument where a void return was expected.(¼ŞãÌ8„Í›–Û1
+otypescript:S6544"GPromise returned in function argument where a void return was expected.(¬Ò‡·ûÿÿÿÿ8„Í›–Û1
