@@ -20,7 +20,7 @@ app.use(
 );
 
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:4200',
     methods: 'GET,OPTIONS,PUT,POST,DELETE',
     credentials: true,
     exposedHeaders: ['Content-Range', 'X-Content-Range'],

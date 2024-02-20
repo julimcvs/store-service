@@ -31,8 +31,8 @@ export default class ProductService {
         const query: any = req.query;
         this.validateQuery(query);
         const paginateQuery: PaginateQuery = new PaginateQuery();
-        paginateQuery.page = query.page;
-        paginateQuery.rowsPerPage = query.rowsPerPage;
+        paginateQuery.page = Number(query.page);
+        paginateQuery.rowsPerPage = Number(query.rowsPerPage);
         paginateQuery.sortDirection = query.sortDirection;
         paginateQuery.sortField = query.sortField;
         const products: PaginateProjection = await this.repository.findPaginate(paginateQuery);
