@@ -19,7 +19,7 @@ export default class UserService {
                 throw new Error("Wrong password")
             }
             const token = jwt.sign({
-                id: existingUser.id,
+                id: existingUser._id,
                 email: existingUser.email,
             }, secret, {
                 expiresIn: '2 days'
@@ -46,7 +46,7 @@ export default class UserService {
         return res.status(201).json({
             message: "User created successfully",
             user: {
-                id: user.id,
+                id: user._id,
                 name: user.name,
                 email: user.email
             }

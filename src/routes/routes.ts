@@ -4,6 +4,8 @@ import { validateRequest } from 'typebox-express-middleware';
 import ProductController from "../controller/ProductController";
 import UserController from "../controller/UserController";
 import UserSchema from "../schema/UserSchema";
+import QuotationController from "../controller/QuotationController";
+import QuotationSchema from "../schema/QuotationSchema";
 
 const router: Router = express.Router();
 
@@ -15,6 +17,22 @@ router.get("/products", async (req: Request, res: Response) => {
 router.get("/products/:id", async (req: Request, res: Response) => {
     await productController.findById(req, res);
 })
+
+// Quotation
+const quotationController = new QuotationController();
+const quotationSchema = new QuotationSchema();
+router.post("/quotation", validateRequest(quotationSchema.quotation), async (req: Request, res: Response) => {
+    await quotationController.quotation(req, res);
+})
+
+router.post("/quotation/add", validateRequest(quotationSchema.addItem), async (req: Request, res: Response) => {
+    await quotationController.addItem(req, res);
+})
+
+router.get("/quotation/:id", async (req: Request, res: Response) => {
+    await quotationController.findQuotationById(req, res);
+})
+
 
 // User
 const userController = new UserController();

@@ -1,4 +1,4 @@
-import {Entity, Column, BaseEntity, ObjectIdColumn, PrimaryGeneratedColumn} from "typeorm"
+import {Entity, Column, BaseEntity, ObjectIdColumn} from "typeorm"
 import {ObjectId} from "mongodb";
 import {Address} from "./Address";
 
@@ -6,9 +6,6 @@ import {Address} from "./Address";
 export class User extends BaseEntity {
     @ObjectIdColumn()
     _id: ObjectId
-
-    @PrimaryGeneratedColumn()
-    id: number
 
     @Column()
     email: string
