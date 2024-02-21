@@ -6,6 +6,8 @@ import UserController from "../controller/UserController";
 import UserSchema from "../schema/UserSchema";
 import QuotationController from "../controller/QuotationController";
 import QuotationSchema from "../schema/QuotationSchema";
+import PurchaseController from "../controller/PurchaseController";
+import PurchaseSchema from "../schema/PurchaseSchema";
 
 const router: Router = express.Router();
 
@@ -16,6 +18,13 @@ router.get("/products", async (req: Request, res: Response) => {
 })
 router.get("/products/:id", async (req: Request, res: Response) => {
     await productController.findById(req, res);
+})
+
+// Purchase
+const purchaseController = new PurchaseController();
+const purchaseSchema = new PurchaseSchema();
+router.post("/purchase/checkout", [auth, validateRequest(purchaseSchema.checkout)], async (req: Request, res: Response) => {
+    await purchaseController.checkout(req, res);
 })
 
 // Quotation

@@ -4,9 +4,19 @@ import {User} from "../entity/User";
 import {Address} from "../entity/Address";
 import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
+import {ObjectId} from "mongodb";
 
 export default class UserService {
     private repository = new UserRepository();
+
+    findById = async (id: ObjectId, res: Response) => {
+        const user = await this.repository.findById(id);
+        if (user) {
+            return user;
+        }
+        res.status(400).json({error: "User not found."});
+        throw new Error("User not found.");
+    }
 
     login = async (req: Request, res: Response) => {
         const body = req.body;

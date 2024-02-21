@@ -5,7 +5,7 @@ export default class QuotationSchema {
         body: Type.Object({
             product: Type.Object({
                 id: Type.Number(),
-                quantity: Type.String(),
+                quantity: Type.String({minLength: 1}),
             }),
         })
     };

@@ -38,6 +38,19 @@ export default class QuotationService {
     async findQuotationById(req: Request, res: Response) {
         const id = new ObjectId(req.params.id);
         const quotation: any = await this.findById(id, res);
+        const productsIds = quotation.quotationDetails.map((detail: QuotationDetail) => detail.productId);
+        const products = await this.productService.findAllByIdIn(productsIds);
+        quotation.quotationDetails.forEach((detail: any) => {
+            const productId = detail.productId;
+            const product = products.find(product => product.id === productId);
+            if (product) {
+                detail.name = product.name;
+                detail.image = product.image;
+                detail.price = `R$${product.price.toFixed(2)}`;
+                detail.subtotal = `R$${detail.subtotal.toFixed(2)}`
+            }
+        });
+
         quotation.totalAmount = `R$${quotation.totalAmount.toFixed(2)}`;
         return res.status(200).json(quotation);
     }
